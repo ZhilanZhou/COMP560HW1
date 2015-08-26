@@ -332,3 +332,13 @@ org.eclipse.jgit.errors.TransportException: https://github.com/DnlRKorn/COMP560H
 	at org.eclipse.egit.ui.internal.push.PushOperationUI.execute(PushOperationUI.java:167)
 	at org.eclipse.egit.ui.internal.push.PushOperationUI$1.run(PushOperationUI.java:229)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SESSION 2015-08-26 16:33:02.713 -----------------------------------------------
+eclipse.buildId=4.3.2.M20140221-1700
+java.version=1.7.0_11
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product -product org.eclipse.epp.package.standard.product -product org.eclipse.epp.package.standard.product -keyring /Users/skuroda/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.standard.product -product org.eclipse.epp.package.standard.product -data /Users/skuroda/Documents/COMP560HW1 -product org.eclipse.epp.package.standard.product -keyring /Users/skuroda/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2015-08-26 16:33:11.792
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences

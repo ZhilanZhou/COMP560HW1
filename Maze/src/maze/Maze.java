@@ -4,26 +4,36 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Maze {
 
 	private boolean[][] mazeArray;
+
 	public Vertex goal;
 	public Vertex start;
+
+	public int mazeWidth;
+	public int mazeHeight;
 	
 	public Maze(String fileLoc){
 		BufferedReader br = null;
+		ArrayList<String> stringList = new ArrayList<String>(); 
 		try {
 			br = new  BufferedReader (new FileReader(fileLoc) );
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		try {
-			
-			while(br.readLine()!=null){
-				System.out.println();
+			String input = br.readLine();
+			while(input != null){
+				stringList.add(input);
 			}
-		} catch (IOException e) {}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		generateMazeArray(stringList);
 		
 	}
 	
@@ -43,5 +53,25 @@ public class Maze {
 		return mazeArray[v.x][v.y+1];
 	}
 	
-	
+
+	private void generateMazeArray(ArrayList<String> stringList){
+		mazeWidth = stringList.get(0).length();
+		mazeHeight = stringList.size();
+		mazeArray = new boolean[mazeWidth][mazeHeight];
+		for(int y = 0; y < mazeHeight; y++){
+			String currentLine = stringList.get(y);
+			for(int x = 0; x < mazeWidth; x++){
+				if(currentLine.charAt(x) == '%'){
+					mazeArray[x][y] = false;
+				}
+				else{
+					if(currentLine.charAt(x) == 'S')
+						start = new Vertex(x, y);
+					if(currentLine.charAt(x) == 'G')
+						goal = new Vertex(x, y);
+					mazeArray[x][y] = true;
+				}
+			}
+		}
+	}
 }

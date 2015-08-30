@@ -2,5 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry exported="true" kind="lib" path="/Users/skuroda/Downloads/aima-java-1.8.1-Chp7-Complete/release/aima-core.jar"/>
+	<classpathentry exported="true" kind="lib" path="/Users/skuroda/Downloads/aima-java-1.8.1-Chp7-Complete/release/aima-gui.jar"/>
+	<classpathentry exported="true" kind="lib" path="/Users/skuroda/Downloads/aima-java-1.8.1-Chp7-Complete/release/commons-compress-1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

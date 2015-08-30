@@ -7,10 +7,16 @@ import java.util.Scanner;
 
 public class Main {
 
+	/**
+	 * 
+	 * @param args Enter name of maze file in command line arguments
+	 */
 	public static void main(String[] args) {
-		Scanner s = new Scanner(System.in);
-		String fileName = s.nextLine();
-		Maze m = new Maze(fileName);
+		Maze m = new Maze(args[0]);
+		System.out.println("Start x = " + m.start.x);
+		System.out.println("Start y = " + m.start.y);
+		System.out.println("Goal x = " + m.goal.x);
+		System.out.println("Goal y = " + m.goal.y);
 		
 	}
 	

@@ -1,0 +1,79 @@
+package maze;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class Maze {
+
+	private boolean[][] mazeArray;
+
+	public Vertex goal;
+	public Vertex start;
+
+	public int mazeWidth;
+	public int mazeHeight;
+	
+	public Maze(String fileLoc){
+		ArrayList<String> stringList = generateStringList(fileLoc);
+		generateMazeArray(stringList);
+	}
+	
+	public boolean canMoveLeft(Vertex v){
+		return mazeArray[v.x-1][v.y];
+	}
+	
+	public boolean canMoveRight(Vertex v){
+		return mazeArray[v.x+1][v.y];
+	}
+	
+	public boolean canMoveDown(Vertex v){
+		return mazeArray[v.x][v.y-1];
+	}
+	
+	public boolean canMoveUp(Vertex v){
+		return mazeArray[v.x][v.y+1];
+	}
+	
+	private ArrayList<String> generateStringList(String fileLoc){
+		BufferedReader br;
+		ArrayList<String> stringList = new ArrayList<String>(); 
+		try {
+			br = new BufferedReader (new FileReader(fileLoc) );
+
+			for(String input = br.readLine(); input != null; input = br.readLine()){
+				stringList.add(input);
+				input = br.readLine();
+			}
+			br.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return stringList;
+	}
+
+	private void generateMazeArray(ArrayList<String> stringList){
+		mazeWidth = stringList.get(0).length();
+		mazeHeight = stringList.size();
+		mazeArray = new boolean[mazeWidth][mazeHeight];
+		for(int y = 0; y < mazeHeight; y++){
+			String currentLine = stringList.get(y);
+			for(int x = 0; x < mazeWidth; x++){
+				if(currentLine.charAt(x) == '%'){
+					mazeArray[x][y] = false;
+				}
+				else{
+					if(currentLine.charAt(x) == 'S')
+						start = new Vertex(x, y);
+					if(currentLine.charAt(x) == 'G')
+						goal = new Vertex(x, y);
+					mazeArray[x][y] = true;
+				}
+			}
+		}
+	}
+}

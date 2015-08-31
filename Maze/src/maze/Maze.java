@@ -8,6 +8,10 @@ public class Maze {
 
 	private boolean[][] mazeArray;
 
+	public enum Direction{
+		up, down, left, right
+	}
+	
 	public Vertex goal;
 	public Vertex start;
 

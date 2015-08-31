@@ -41,7 +41,7 @@ public class Maze {
 	}
 	
 	public boolean isGoalVertex(Vertex v){
-		return v == goal;
+		return v.equals(goal);
 	}
 	
 	private ArrayList<String> generateStringList(String fileLoc){

@@ -5,17 +5,17 @@ import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class GreedyBestFirstSearch {
+public class AStarSearch {
 	Vertex startSpace;
 	Vertex goalSpace;
 	Queue<Node> frontier;
 	LinkedList<Vertex> exploredSet;
 	Maze m;
 	
-	public GreedyBestFirstSearch(Maze m, Vertex start, Vertex goal){
+	public AStarSearch(Maze m, Vertex start, Vertex goal){
 		startSpace = start;
 		goalSpace = goal;
-		frontier = new PriorityQueue<Node>(10,new GreedyNodeComparator());
+		frontier = new PriorityQueue<Node>(10 , new AStarNodeComparator());
 		frontier.add(new Node(start, null, null, 0, manhattanDistance(start)));
 		exploredSet = new LinkedList<Vertex>();
 		Vertex temp;

@@ -40,6 +40,10 @@ public class Maze {
 		return mazeArray[v.x][v.y+1];
 	}
 	
+	public boolean isGoalVertex(Vertex v){
+		return v == goal;
+	}
+	
 	private ArrayList<String> generateStringList(String fileLoc){
 		BufferedReader br;
 		ArrayList<String> stringList = new ArrayList<String>(); 

@@ -2,6 +2,7 @@ package maze;
 
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
@@ -22,7 +23,43 @@ public class Main {
 	
 	private void BreadthFirstSearch(Maze m){
 		ArrayList<Vertex> exploredSet = new ArrayList<Vertex>();
-		//Queue<Vertex> frontier = new Queue<Vertex>();
+		Queue<Vertex> frontier = new LinkedList<Vertex>();
+		boolean goalFound = false;
+		frontier.add(m.start);
+		Vertex temp;
+		while(!(frontier.isEmpty()||goalFound)){
+			Vertex v = frontier.poll();
+			if(m.isGoalVertex(v)){
+				goalFound = true;
+			}
+			else{
+				if(m.canMoveLeft(v)){
+					temp = new Vertex(v.x-1,v.y);
+					if(!exploredSet.contains(temp)){
+						frontier.add(temp);
+					}
+				}
+				if(m.canMoveDown(v)){
+					temp = new Vertex(v.x,v.y-1);
+					if(!exploredSet.contains(temp)){
+						frontier.add(temp);
+					}
+				}
+				if(m.canMoveRight(v)){
+					temp = new Vertex(v.x+1,v.y);
+					if(!exploredSet.contains(temp)){
+						frontier.add(temp);
+					}
+				}
+				if(m.canMoveUp(v)){
+					temp = new Vertex(v.x,v.y+1);
+					if(!exploredSet.contains(temp)){
+						frontier.add(temp);
+					}
+				}
+				
+			}
+		}
 	}
 	
 }

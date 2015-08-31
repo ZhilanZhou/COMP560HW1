@@ -59,14 +59,15 @@ public class BreadthFirstSearch {
 					}
 				}
 			}
-			int counter = 0;
-			while(goalNode!=null){
-				System.out.printf("x:%d y:%d\n", goalNode.nodeVertex.x,goalNode.nodeVertex.y);
-				goalNode = goalNode.parent;
-				counter++;
-			}
-			System.out.printf("Number of steps %d\n", counter);
+
 		}
+		int counter = 0;
+		while(goalNode!=null){
+			System.out.printf("x:%d y:%d\n", goalNode.nodeVertex.x,goalNode.nodeVertex.y);
+			goalNode = goalNode.parent;
+			counter++;
+		}
+		System.out.printf("Number of steps %d\n", counter);
 	}
 	
 	private boolean checkIfInExploredSet(Vertex v){

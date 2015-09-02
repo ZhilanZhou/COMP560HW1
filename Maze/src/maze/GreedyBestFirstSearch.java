@@ -21,8 +21,10 @@ public class GreedyBestFirstSearch {
 		Vertex temp;
 		Node goalNode = null;
 		boolean goalFound = false;
+		int expandedNodes = 0;
 		while(!goalFound && !frontier.isEmpty()){
 			Node n = frontier.poll();
+			expandedNodes++;
 			Vertex v = n.nodeVertex;
 			if(m.isGoalVertex(v)){
 				goalFound = true;
@@ -67,6 +69,7 @@ public class GreedyBestFirstSearch {
 			counter++;
 		}
 		System.out.printf("Number of steps %d\n", counter);
+		System.out.printf("Number of nodes expanded %d\n", expandedNodes);
 	}
 	
 	private boolean checkIfInExploredSet(Vertex v){

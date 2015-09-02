@@ -13,14 +13,14 @@ public class Main {
 	 * @param args Enter name of maze file in command line arguments
 	 */
 	public static void main(String[] args) {
-		Maze m = new Maze("bigMaze.txt");
+		Maze m = new Maze("customMaxe3.txt");
 		System.out.println("Start x = " + m.start.x);
 		System.out.println("Start y = " + m.start.y);
 		System.out.println("Goal x = " + m.goal.x);
 		System.out.println("Goal y = " + m.goal.y);
-		BreadthFirstSearch bfs = new BreadthFirstSearch(m,m.start,m.goal);
-		System.out.println("Starting dfs");
-		DepthFirstSearch dfs = new DepthFirstSearch(m,m.start,m.goal);
+//		BreadthFirstSearch bfs = new BreadthFirstSearch(m,m.start,m.goal);
+//		System.out.println("Starting dfs");
+//		DepthFirstSearch dfs = new DepthFirstSearch(m,m.start,m.goal);
 		System.out.println("Starting Greedy");
 		GreedyBestFirstSearch gfs = new GreedyBestFirstSearch(m,m.start,m.goal);
 		System.out.println("Starting A*");

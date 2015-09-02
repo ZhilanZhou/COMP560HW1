@@ -13,7 +13,7 @@ public class Main {
 	 * @param args Enter name of maze file in command line arguments
 	 */
 	public static void main(String[] args) {
-		Maze m = new Maze("customMaxe3.txt");
+		Maze m = new Maze("difficultMaze1.txt");
 		System.out.println("Start x = " + m.start.x);
 		System.out.println("Start y = " + m.start.y);
 		System.out.println("Goal x = " + m.goal.x);

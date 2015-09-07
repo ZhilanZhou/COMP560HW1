@@ -26,7 +26,7 @@ public class AStarSearch {
 			Node n = frontier.poll();
 			expandedNodes++;
 			Vertex v = n.nodeVertex;
-			if(m.isGoalVertex(v)){
+			if(m.isCheese(v) || m.isGoalVertex(v)){
 				goalFound = true;
 				goalNode = n;
 			}

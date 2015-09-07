@@ -75,6 +75,7 @@ public class Maze {
 		mazeHeight = stringList.size();
 		//Initialize maze array to proper dimensions
 		mazeArray = new boolean[mazeWidth][mazeHeight];
+		cheese = new LinkedList<Vertex>();
 		
 		//Fill in array line by line
 		for(int y = 0; y < mazeHeight; y++){

@@ -10,34 +10,43 @@ public class AStarSearchForCheese {
 	Vertex goalSpace;
 	Queue<Node> frontier;
 	LinkedList<Vertex> exploredSet;
+	LinkedList<Vertex> exploredSetCheese;
 	LinkedList<Vertex> currentCheese;
 	Maze m;
-	int counter;
+	
 	
 	public AStarSearchForCheese(Maze m, Vertex start, LinkedList<Vertex> cheese){
 		startSpace = start;
 		currentCheese = (LinkedList<Vertex>) cheese.clone();
-		
+		exploredSet = new LinkedList<Vertex>();
+		exploredSetCheese = new LinkedList<Vertex>();
 		getGoal(startSpace, currentCheese);
 		frontier = new PriorityQueue<Node>(10 , new AStarNodeComparator());
 		frontier.add(new Node(start, null, null, 0, manhattanDistance(start)));
-		exploredSet = new LinkedList<Vertex>();
 		Vertex temp;
 		Node goalNode = null;
 		boolean goalFound = false;
-		int expandedNodes = 0;
+		int expandedNodes = 1;
+		int counter = 1;
 		
 		while (goalSpace != null){
+			goalFound = false;
+			frontier.clear();
+			frontier.add(new Node(startSpace, null, null, 0, manhattanDistance(startSpace)));
+			exploredSet = new LinkedList<Vertex>();
+			goalNode = null;
+			
 			while(!goalFound && !frontier.isEmpty()){
 				Node n = frontier.poll();
 				expandedNodes++;
 				Vertex v = n.nodeVertex;
-				if(m.isGoalVertex(v)){
+				if(v.equals(goalSpace)){
 					goalFound = true;
 					goalNode = n;
 				}
 				else{
 					exploredSet.add(v);
+					exploredSetCheese.add(v);
 					if(m.canMoveLeft(n.nodeVertex)){
 						temp = new Vertex(v.x-1,v.y);
 						if(!checkIfInExploredSet(temp)){
@@ -73,16 +82,29 @@ public class AStarSearchForCheese {
 				goalNode = goalNode.parent;
 				counter++;
 			}
+			counter--;
+			expandedNodes--;
+			
 			System.out.printf("Number of steps %d\n", counter);
 			System.out.printf("Number of nodes expanded %d\n", expandedNodes);
 			
 			startSpace = goalSpace;
-			getGoal(startSpace, m.cheese);
+			getGoal(startSpace, currentCheese);
 		}
 	}
 	
 	private boolean checkIfInExploredSet(Vertex v){
 		Iterator<Vertex> iter = exploredSet.iterator();
+		while(iter.hasNext()){
+			if(iter.next().equals(v)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private boolean checkIfInExploredSetCheese(Vertex v){
+		Iterator<Vertex> iter = exploredSetCheese.iterator();
 		while(iter.hasNext()){
 			if(iter.next().equals(v)){
 				return true;
@@ -101,17 +123,27 @@ public class AStarSearchForCheese {
 
 	private void getGoal(Vertex start, LinkedList<Vertex> cheese){
 		int tempDistance = -1;
+		LinkedList<Vertex> forDel = new LinkedList<Vertex>();
 		if (cheese.isEmpty()){
 			goalSpace = null;
 			return;
 		}else{
 			for (Vertex item : cheese){
+				if (!exploredSet.isEmpty()){
+					if (checkIfInExploredSetCheese(item)){
+						forDel.add(item);
+					}
+				}
+			}
+			if (!forDel.isEmpty()){
+				for (Vertex item : forDel){
+					cheese.remove(item);
+				}
+			}
+			for (Vertex item : cheese){
 				if (tempDistance == -1){
 					tempDistance = absDistance(start, item);
 					goalSpace = item;
-				}
-				if (checkIfInExploredSet(item)){
-					cheese.remove(item);
 					continue;
 				}
 				if (absDistance(start, item) < tempDistance){

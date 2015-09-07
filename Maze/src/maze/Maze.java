@@ -3,6 +3,7 @@ package maze;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Maze {
 
@@ -14,6 +15,7 @@ public class Maze {
 	
 	public Vertex goal;
 	public Vertex start;
+	public LinkedList<Vertex> cheese;
 
 	public int mazeWidth;
 	public int mazeHeight;
@@ -42,6 +44,10 @@ public class Maze {
 	
 	public boolean isGoalVertex(Vertex v){
 		return v.equals(goal);
+	}
+	
+	public boolean isCheese(Vertex v){
+		return cheese.contains(v);
 	}
 	
 	private ArrayList<String> generateStringList(String fileLoc){
@@ -85,6 +91,9 @@ public class Maze {
 					//If current space is 'G', record goal space
 					if(currentLine.charAt(x) == 'G')
 						goal = new Vertex(x, y);
+					//If current space is '.', record cheese space
+					if(currentLine.charAt(x) == '.')
+						cheese.add(new Vertex(x, y));
 					//Mark space as traversable
 					mazeArray[x][y] = true;
 				}

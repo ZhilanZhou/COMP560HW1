@@ -13,7 +13,7 @@ public class Main {
 	 * @param args Enter name of maze file in command line arguments
 	 */
 	public static void main(String[] args) {
-		Maze m = new Maze("difficultMaze1.txt");
+		Maze m = new Maze("smallcheese.txt");
 		System.out.println("Start x = " + m.start.x);
 		System.out.println("Start y = " + m.start.y);
 		System.out.println("Goal x = " + m.goal.x);
@@ -21,10 +21,12 @@ public class Main {
 //		BreadthFirstSearch bfs = new BreadthFirstSearch(m,m.start,m.goal);
 //		System.out.println("Starting dfs");
 //		DepthFirstSearch dfs = new DepthFirstSearch(m,m.start,m.goal);
-		System.out.println("Starting Greedy");
-		GreedyBestFirstSearch gfs = new GreedyBestFirstSearch(m,m.start,m.goal);
+//		System.out.println("Starting Greedy");
+//		GreedyBestFirstSearch gfs = new GreedyBestFirstSearch(m,m.start,m.goal);
+//		System.out.println("Starting A*");
+//		AStarSearch aStar = new AStarSearch(m,m.start,m.goal);
 		System.out.println("Starting A*");
-		AStarSearch aStar = new AStarSearch(m,m.start,m.goal);
+		AStarSearchForCheese aStar = new AStarSearchForCheese(m,m.start,m.cheese);
 	}
 	
 //	private void BreadthFirstSearch(Maze m){
@@ -66,6 +68,5 @@ public class Main {
 //				
 //			}
 //		}
-//	}
-	
+//	}	
 }

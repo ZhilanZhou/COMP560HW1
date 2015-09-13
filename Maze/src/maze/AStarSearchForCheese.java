@@ -10,8 +10,8 @@ public class AStarSearchForCheese {
 	Vertex goalSpace;
 	Queue<Node> frontier;
 	LinkedList<Vertex> exploredSet;
-	LinkedList<Vertex> visitedSet;
-	LinkedList<Vertex> currentCheese;
+	LinkedList<Vertex> visitedSet;		//a list of vertex that are visited
+	LinkedList<Vertex> currentCheese;	//a list of cheese vertex
 	Maze m;
 	
 	
@@ -29,7 +29,7 @@ public class AStarSearchForCheese {
 		int expandedNodes = 1;
 		int counter = 1;
 		
-		while (goalSpace != null){
+		while (goalSpace != null){		//when the goal is set, perform a a star search
 			goalFound = false;
 			frontier.clear();
 			frontier.add(new Node(startSpace, null, null, 0, manhattanDistance(startSpace)));
@@ -77,7 +77,7 @@ public class AStarSearchForCheese {
 					}
 				}
 			}
-			while(goalNode!=null){
+			while(goalNode!=null){		//track back the path actually visited
 				System.out.printf("x:%d y:%d\n", goalNode.nodeVertex.x,goalNode.nodeVertex.y);
 				visitedSet.add(goalNode.nodeVertex);
 				goalNode = goalNode.parent;
@@ -104,7 +104,7 @@ public class AStarSearchForCheese {
 		return false;
 	}
 	
-	private boolean checkIfInExploredSetCheese(Vertex v){
+	private boolean checkIfInVisitedSet(Vertex v){
 		Iterator<Vertex> iter = visitedSet.iterator();
 		while(iter.hasNext()){
 			if(iter.next().equals(v)){
@@ -122,6 +122,9 @@ public class AStarSearchForCheese {
 		return Math.abs(v.x-w.x)+Math.abs(v.y-w.y);
 	}
 
+	/*
+	 * method to do through the linked list of cheese and pick goals
+	 */
 	private void getGoal(Vertex start, LinkedList<Vertex> cheese){
 		int tempDistance = -1;
 		LinkedList<Vertex> forDel = new LinkedList<Vertex>();
@@ -129,9 +132,9 @@ public class AStarSearchForCheese {
 			goalSpace = null;
 			return;
 		}else{
-			for (Vertex item : cheese){
+			for (Vertex item : cheese){		//find if there's cheese left in the list that is already visited
 				if (!exploredSet.isEmpty()){
-					if (checkIfInExploredSetCheese(item)){
+					if (checkIfInVisitedSet(item)){
 						forDel.add(item);
 					}
 				}
@@ -141,7 +144,7 @@ public class AStarSearchForCheese {
 					cheese.remove(item);
 				}
 			}
-			for (Vertex item : cheese){
+			for (Vertex item : cheese){		//get next goal
 				if (tempDistance == -1){
 					tempDistance = absDistance(start, item);
 					goalSpace = item;

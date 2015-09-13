@@ -10,7 +10,7 @@ public class AStarSearchForCheese {
 	Vertex goalSpace;
 	Queue<Node> frontier;
 	LinkedList<Vertex> exploredSet;
-	LinkedList<Vertex> exploredSetCheese;
+	LinkedList<Vertex> visitedSet;
 	LinkedList<Vertex> currentCheese;
 	Maze m;
 	
@@ -19,7 +19,7 @@ public class AStarSearchForCheese {
 		startSpace = start;
 		currentCheese = (LinkedList<Vertex>) cheese.clone();
 		exploredSet = new LinkedList<Vertex>();
-		exploredSetCheese = new LinkedList<Vertex>();
+		visitedSet = new LinkedList<Vertex>();
 		getGoal(startSpace, currentCheese);
 		frontier = new PriorityQueue<Node>(10 , new AStarNodeComparator());
 		frontier.add(new Node(start, null, null, 0, manhattanDistance(start)));
@@ -46,7 +46,7 @@ public class AStarSearchForCheese {
 				}
 				else{
 					exploredSet.add(v);
-					exploredSetCheese.add(v);
+					
 					if(m.canMoveLeft(n.nodeVertex)){
 						temp = new Vertex(v.x-1,v.y);
 						if(!checkIfInExploredSet(temp)){
@@ -79,6 +79,7 @@ public class AStarSearchForCheese {
 			}
 			while(goalNode!=null){
 				System.out.printf("x:%d y:%d\n", goalNode.nodeVertex.x,goalNode.nodeVertex.y);
+				visitedSet.add(goalNode.nodeVertex);
 				goalNode = goalNode.parent;
 				counter++;
 			}
@@ -104,7 +105,7 @@ public class AStarSearchForCheese {
 	}
 	
 	private boolean checkIfInExploredSetCheese(Vertex v){
-		Iterator<Vertex> iter = exploredSetCheese.iterator();
+		Iterator<Vertex> iter = visitedSet.iterator();
 		while(iter.hasNext()){
 			if(iter.next().equals(v)){
 				return true;

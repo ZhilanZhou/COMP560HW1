@@ -13,7 +13,7 @@ public class Main {
 	 * @param args Enter name of maze file in command line arguments
 	 */
 	public static void main(String[] args) {
-		Maze m = new Maze("bigcheese.txt");
+		Maze m = new Maze("mediumcheese.txt");
 		System.out.println("Start x = " + m.start.x);
 		System.out.println("Start y = " + m.start.y);
 //		System.out.println("Goal x = " + m.goal.x);
@@ -25,7 +25,7 @@ public class Main {
 //		GreedyBestFirstSearch gfs = new GreedyBestFirstSearch(m,m.start,m.goal);
 //		System.out.println("Starting A*");
 //		AStarSearch aStar = new AStarSearch(m,m.start,m.goal);
-		System.out.println("Starting A*");
+		System.out.println("Starting A* cheese");
 		AStarSearchForCheese aStar = new AStarSearchForCheese(m,m.start,m.cheese);
 	}
 	
